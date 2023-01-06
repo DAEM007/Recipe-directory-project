@@ -1,5 +1,5 @@
 // all react imports
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // styles import
 import './App.css';
 // components import
@@ -13,14 +13,15 @@ import Search from './pages/search/Search';
 
 function App() {
   return (
+    
     <Router>
       <NavBar/>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/create" component={Create}/>
-          <Route path="/recipe/:id" component={Recipe}/>
-          <Route path="/search" component={Search}/>
-        </Switch>
+        <Routes>
+          <Route path="/" element={ <Home /> }/>
+          <Route path="/create" element={ <Create /> }/>
+          <Route path="/recipe/:id" element={ <Recipe /> }/>
+          <Route path="/search" element={ <Search /> }/>
+        </Routes>
     </Router>
   );
 }
