@@ -10,30 +10,24 @@ const useFetch = (col) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-
-        const fetch = async () => {
-            setIsPending(true);
-            try{
-                const colRef = collection(db, col);
-                const unsub = onSnapshot(colRef, (snapshot) => {
-                    let result = [];
-                    snapshot.forEach((doc) => {
-                        result.push({id: doc.id, ...doc.data()});
-                        setDocuments(result);
-                        setIsPending(false);
-                    })
-
-                    return unsub;
-                })
-            }catch(err){
-                console.log(err.message);
+        setIsPending(true);
+        const colRef = collection(db, col);
+        const unsub = onSnapshot(colRef, (snapshot) => {
+            let result = [];
+            snapshot.forEach((doc) => {
+                result.push({id: doc.id, ...doc.data()});
+                setDocuments(result);
                 setIsPending(false);
-            }
-        }
-        
-        fetch();
+            })
+        },
+        (error)=> {
+            setError(error.message);
+            setIsPending(false);
+        })
 
-    }, [col])
+        return unsub;
+
+    }, [col]);
 
     return { documents, isPending, error };
 
