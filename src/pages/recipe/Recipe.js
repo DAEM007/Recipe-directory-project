@@ -10,7 +10,6 @@ import { collection, doc, onSnapshot } from "firebase/firestore";
 
 const Recipe = () => {
     const { id } = useParams();
-    // const history = useNavigate();
     const [recipeDoc, setRecipeDoc] = useState(null);
     const [isPending, setIsPending] = useState(false);
 
