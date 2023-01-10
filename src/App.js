@@ -13,7 +13,6 @@ import Search from './pages/search/Search';
 
 function App() {
   return (
-    
     <Router>
       <NavBar/>
         <Routes>
