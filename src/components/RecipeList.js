@@ -17,5 +17,5 @@ const RecipeList = ({ recipes }) => {
         </div>
     );
 }
- 
+
 export default RecipeList;
