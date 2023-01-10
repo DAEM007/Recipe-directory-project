@@ -30,9 +30,18 @@ const Recipe = () => {
 
 
     return (
-        <div>
+        <div className="recipe">
             {!isPending && <div className="loading">Loading...</div>}
-            {recipeDoc && <h3>{ recipeDoc.title }</h3>}
+            {recipeDoc && (
+                <>
+                    <h2 className="page-title">{recipeDoc.title}</h2>
+                    <p>Takes {recipeDoc.cookingTime} to cook</p>
+                    <ul>{recipeDoc.ingredients.map((ing) => (
+                        <li key={ing}>{ ing }</li>
+                    ))}</ul>
+                    <p className="method">{ recipeDoc.method }</p>  
+                </>
+            )}
         </div>
     );
 }
