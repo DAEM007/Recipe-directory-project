@@ -1,5 +1,5 @@
 // all react imports
-import { useState } from "react";
+import { useRef, useState } from "react";
 // styles import
 import "./Create.css";
 
@@ -7,11 +7,25 @@ const Create = () => {
     const [title, setTitle] = useState('');
     const [cookingTime, setCookingTime] = useState('');
     const [method, setMethod] = useState('');
+    const [newIngredient, setNewIngredient] = useState('');
+    const [ingredients, setIngredients] = useState([]);
+    const ingredientInput = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(title, cookingTime, method);
+        console.log(title, cookingTime, method, ingredients);
+
+    }
+
+    const handleAdd = (e) => {
+        e.preventDefault();
+        const ing = newIngredient.trim();
+        if(ing && !ingredients.includes(ing)){
+            setIngredients(prevIng => [...prevIng, ing]);
+        }
+        setNewIngredient('');
+        ingredientInput.current.focus();
     }
 
     return (
@@ -40,7 +54,21 @@ const Create = () => {
                     />
                 </label>
 
-                {/* ingredients here */}
+                <label>
+                    <span>Ingredients:</span>
+                    <div className="ingredients">
+                        <input 
+                        type="text"
+                        value={newIngredient}
+                        onChange={(e) => setNewIngredient(e.target.value)}
+                        ref={ingredientInput}
+                        />
+                        <button className="btn" onClick={handleAdd}>Add</button>
+                    </div>
+                </label>
+                <p>Ingredients to use: {ingredients.map(ing => (
+                    <em key={ing}>{ing},</em>
+                ))}</p>
 
                 <label>
                     <span>Recipe Method:</span>
@@ -52,7 +80,7 @@ const Create = () => {
                     />
                 </label>
 
-                <button>Submit</button>
+                <button className="btn">Submit</button>
 
             </form>
 
