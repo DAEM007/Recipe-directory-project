@@ -11,13 +11,12 @@ const useFetch = (col, docId) => {
     const [error, setError] = useState(null);
     const Id = useRef(docId).current;
 
-
-    // Get all documents from the collection
     useEffect(() => {
 
          // initialize the firebase collection
         const colRef = collection(db, col);
 
+        // Get all documents from the collection
         const unsub = onSnapshot(colRef, (snapshot) => {
             let result = [];
             snapshot.forEach((doc) => {
@@ -31,6 +30,7 @@ const useFetch = (col, docId) => {
             setError(error.message);
         })
 
+        // Get a single document from the collection
         if(Id){
             const docRef = doc(colRef, Id);
             onSnapshot(docRef, (doc) => {
