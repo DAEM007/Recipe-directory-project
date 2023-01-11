@@ -2,6 +2,10 @@
 import { useRef, useState } from "react";
 // styles import
 import "./Create.css";
+// all firebase imports
+import { db } from "../../firebase/firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 
 const Create = () => {
     const [title, setTitle] = useState('');
@@ -14,11 +18,24 @@ const Create = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(title, cookingTime, method, ingredients);
+        // console.log(title, cookingTime, method, ingredients);
 
+        // Assign the recipe data as an object into the newRecipe variable
+        const newRecipe = {title, cookingTime, method, ingredients};
+
+        // Add new recipe to the recipes collection
+        const colRef = collection(db, "recipes");
+        addDoc(colRef, newRecipe)
+            .then((newDoc) => {
+                console.log(newDoc);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            })
+        
     }
 
-    const handleAdd = (e) => {
+    const handleAddIng = (e) => {
         e.preventDefault();
         const ing = newIngredient.trim();
         if(ing && !ingredients.includes(ing)){
@@ -48,7 +65,7 @@ const Create = () => {
                     <span>Time to cook (in minutes):</span>
                     <input 
                     type="number"
-                    value={cookingTime}
+                    value={ cookingTime }
                     onChange={(e) => setCookingTime(e.target.value)}
                     required
                     />
@@ -63,7 +80,7 @@ const Create = () => {
                         onChange={(e) => setNewIngredient(e.target.value)}
                         ref={ingredientInput}
                         />
-                        <button className="btn" onClick={handleAdd}>Add</button>
+                        <button className="btn" onClick={handleAddIng}>Add</button>
                     </div>
                 </label>
                 <p>Ingredients to use: {ingredients.map(ing => (
