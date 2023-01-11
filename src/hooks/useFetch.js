@@ -1,35 +1,55 @@
 // all react imports
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // all firebase imports
 import { db } from "../firebase/firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 
-const useFetch = (col) => {
+const useFetch = (col, docId) => {
     const [documents, setDocuments] = useState(null);
-    const [isPending, setIsPending] = useState(false);
+    const [document, setDocument] = useState(null);
+    const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
+    const Id = useRef(docId).current;
 
+
+    // Get all documents from the collection
     useEffect(() => {
-        setIsPending(true);
+
+         // initialize the firebase collection
         const colRef = collection(db, col);
+
         const unsub = onSnapshot(colRef, (snapshot) => {
             let result = [];
             snapshot.forEach((doc) => {
                 result.push({id: doc.id, ...doc.data()});
-                setDocuments(result);
-                setIsPending(false);
             })
-        },
-        (error)=> {
-            setError(error.message);
+            // console.log(result);
+            setDocuments(result);
             setIsPending(false);
+        },
+        (error) => {
+            setError(error.message);
         })
 
+        if(Id){
+            const docRef = doc(colRef, Id);
+            onSnapshot(docRef, (doc) => {
+                setIsPending(true);
+                // console.log(doc.data());
+                setDocument(doc.data());
+                setIsPending(false);
+            },
+            (error) => {
+                setError(error.message);
+            })
+        }
+        
         return unsub;
 
-    }, [col]);
+    }, [col, Id]);
 
-    return { documents, isPending, error };
+
+    return { documents, document, isPending, error };
 
 }
  
