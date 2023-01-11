@@ -43,6 +43,7 @@ const useFetch = (col, docId) => {
                 setError(error.message);
             })
         }
+
         
         return unsub;
 
