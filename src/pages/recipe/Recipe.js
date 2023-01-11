@@ -8,7 +8,7 @@ import useFetch from "../../hooks/useFetch";
 
 const Recipe = () => {
     const { id } = useParams();
-    const { document: recipeDoc, isPending } = useFetch("recipes", id);
+    const { document: recipeDoc, isPending } = useFetch("recipes", id); 
 
     return (
         <div className="recipe">
