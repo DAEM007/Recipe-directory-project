@@ -15,7 +15,7 @@ const Create = () => {
     const [newIngredient, setNewIngredient] = useState('');
     const [ingredients, setIngredients] = useState([]);
     const ingredientInput = useRef(null);
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,7 +30,7 @@ const Create = () => {
         addDoc(colRef, newRecipe)
             .then((newDoc) => {
                 console.log(newDoc);
-                history('/');
+                navigate('/');
             })
             .catch((err) => {
                 console.log(err.message);
