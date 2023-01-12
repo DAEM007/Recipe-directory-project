@@ -23,7 +23,7 @@ const Create = () => {
         // console.log(title, cookingTime, method, ingredients);
 
         // Assign the recipe data as an object into the newRecipe variable
-        const newRecipe = {title, cookingTime, method, ingredients};
+        const newRecipe = {title, cookingTime: `${cookingTime} minutes`, method, ingredients};
 
         // Add new recipe to the recipes collection
         const colRef = collection(db, "recipes");
@@ -68,7 +68,7 @@ const Create = () => {
                     <span>Time to cook (in minutes):</span>
                     <input 
                     type="number"
-                    value={ cookingTime }
+                    value={ cookingTime } 
                     onChange={(e) => setCookingTime(e.target.value)}
                     required
                     />
