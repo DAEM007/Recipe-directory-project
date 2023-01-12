@@ -1,5 +1,6 @@
 // all react imports
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 // styles import
 import "./Create.css";
 // all firebase imports
@@ -14,6 +15,7 @@ const Create = () => {
     const [newIngredient, setNewIngredient] = useState('');
     const [ingredients, setIngredients] = useState([]);
     const ingredientInput = useRef(null);
+    const history = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,6 +30,7 @@ const Create = () => {
         addDoc(colRef, newRecipe)
             .then((newDoc) => {
                 console.log(newDoc);
+                history('/');
             })
             .catch((err) => {
                 console.log(err.message);
