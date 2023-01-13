@@ -13,7 +13,7 @@ const Search = () => {
 
     const { documents: recipeData, error, isPending } = useFetch("recipes");
 
-    console.log(recipeData);
+    // console.log(recipeData);
 
     return (
         <div>
