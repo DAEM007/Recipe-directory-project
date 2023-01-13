@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 // styles
 import "./NavBar.css";
+// component imports
+import Searbar from "./SearchBar";
 
 const NavBar = () => {
     return (
@@ -10,6 +12,7 @@ const NavBar = () => {
             <Link to="/" className="brand">
                 <h1>Daem cusine</h1>
             </Link>
+            <Searbar />
             <Link to="/create">Create recipe</Link>
         </nav>
        </div> 
