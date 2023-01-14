@@ -5,7 +5,7 @@ import { db } from "../firebase/firebase";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 
 const useFetch = (col, docId) => {
-    const [documents, setDocuments] = useState(null);
+    const [documents, setDocuments] = useState([]);
     const [document, setDocument] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
