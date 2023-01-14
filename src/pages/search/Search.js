@@ -1,12 +1,16 @@
 // all react imports
-import { useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 // hooks import
 import useFetch from "../../hooks/useFetch";
 // styles import
 import "./Search.css";
+// component imports
+import RecipeList from "../../components/RecipeList";
 
 
 const Search = () => {
+    const [filtered, setFiltered] = useState();
     const queryString = useLocation().search;
     const queryParams = new URLSearchParams(queryString);
     const query = queryParams.get('q');
@@ -15,33 +19,23 @@ const Search = () => {
 
     // console.log(recipeData);
 
+    useEffect(() => {
+
+        setFiltered(recipeData.filter(data => {
+            return data.title.toLowerCase().includes(query.toLowerCase());
+        }))
+
+    }, [query, recipeData])
+
+    
+
+
     return (
         <div>
             <h2 className="page-title">Recipes including "{query}"</h2>
             {error && <p className="error">{error}</p>}
             {isPending && <p className="loading">Loading...</p>}
-            {recipeData && recipeData.map((recipe) => (
-                <div className="search" key={recipe.id}>
-
-                    { recipe.title.toLowerCase()
-                                .includes(query.toLowerCase())
-
-                                ?
-
-                                <div className="card">
-                                    <h3>{recipe.title}</h3>
-                                    <p>{recipe.cookingTime}</p>
-                                    <div>{recipe.method.substring(0, 100)}....</div>
-                                    <Link to={`./recipe/${recipe.id}`}>Cook This</Link>
-                                </div>
-                            
-                                :
-
-                                "" 
-                    }
-
-                </div>
-            ))}
+            {filtered && <RecipeList recipes={filtered} />}
         </div>
     );
 }
