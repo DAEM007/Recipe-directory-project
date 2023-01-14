@@ -19,6 +19,7 @@ function App() {
           <Route path="/" element={ <Home /> }/>
           <Route path="/create" element={ <Create /> }/>
           <Route path="/recipe/:id" element={ <Recipe /> }/>
+          <Route path="/search/recipe/:id" element={ <Recipe /> }/>
           <Route path="/search" element={ <Search /> }/>
         </Routes>
     </Router>
