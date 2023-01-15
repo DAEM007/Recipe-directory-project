@@ -9,6 +9,7 @@ import Home from './pages/home/Home';
 import Create from './pages/create/Create';
 import Recipe from './pages/recipe/Recipe';
 import Search from './pages/search/Search';
+import NotFound from './components/NotFound';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/recipe/:id" element={ <Recipe /> }/>
           <Route path="/search/recipe/:id" element={ <Recipe /> }/>
           <Route path="/search" element={ <Search /> }/>
+          <Route path='*' element={ <NotFound /> }/>
         </Routes>
     </Router>
   );
