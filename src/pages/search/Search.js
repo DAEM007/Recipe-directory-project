@@ -10,7 +10,7 @@ import RecipeList from "../../components/RecipeList";
 
 
 const Search = () => {
-    const [filtered, setFiltered] = useState();
+    const [filtered, setFiltered] = useState(null);
     const queryString = useLocation().search;
     const queryParams = new URLSearchParams(queryString);
     const query = queryParams.get('q');
@@ -26,8 +26,6 @@ const Search = () => {
         }))
 
     }, [query, recipeData])
-
-    
 
 
     return (
