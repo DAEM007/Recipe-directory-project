@@ -20,7 +20,7 @@ const Search = () => {
     // console.log(recipeData);
 
     useEffect(() => {
-
+        // filter the data comming from the data base based on the search term
         setFiltered(recipeData.filter(data => {
             return data.title.toLowerCase().includes(query.toLowerCase());
         }))
