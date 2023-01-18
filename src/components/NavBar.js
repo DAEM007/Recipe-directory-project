@@ -1,15 +1,14 @@
 // all react imports
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { ThemeContext } from "./context/ThemeContext";
+// hooks import
+import useTheme from "../hooks/useTheme";
 // styles
 import "./NavBar.css";
 // component imports
 import Searbar from "./SearchBar";
 
 const NavBar = () => {
-    const { color } = useContext(ThemeContext);
-
+    const { color } = useTheme();    
 
     return (
        <div className="navbar" style={ {background: color} }>
