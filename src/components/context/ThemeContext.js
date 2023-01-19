@@ -14,7 +14,7 @@ const themeReducer = (state, action) => {
 
 // initial state
 const initialState = {
-    color: "blue"
+    color: "#58249c"
 }
 
 export function ThemeProvider({ children }){
