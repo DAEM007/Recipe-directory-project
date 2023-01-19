@@ -8,11 +8,11 @@ import "./NavBar.css";
 import Searbar from "./SearchBar";
 
 const NavBar = () => {
-    const { color } = useTheme();    
+    const { color, changeColor } = useTheme(); 
 
     return (
        <div className="navbar" style={ {background: color} }>
-        <nav>
+        <nav onClick={() => {changeColor("red")}}>
             <Link to="/" className="brand">
                 <h1>Daem cusine</h1>
             </Link>
