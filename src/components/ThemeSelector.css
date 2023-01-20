@@ -1,4 +1,15 @@
 
+
+.toggle-mode {
+    margin-right: auto;
+}
+
+.toggle-mode img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
 .theme-selector {
     display: flex;
     justify-content: flex-end;
@@ -15,3 +26,4 @@
     margin-left: 15px;
     border-radius: 50%;
 }
+
