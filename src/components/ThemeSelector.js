@@ -21,6 +21,7 @@ export default function ThemeSelector() {
             <img 
                 src={modeIcon}
                 onClick={toggleMode}
+                style={{ filter: mode === "dark" ? "invert(100%)" : "invert(20%)" }}
                 alt="dark/light-mode"
             />
         </div>
