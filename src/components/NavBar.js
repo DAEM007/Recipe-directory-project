@@ -14,7 +14,7 @@ const NavBar = () => {
        <div className="navbar" style={ {background: color} }>
         <nav>
             <Link to="/" className="brand">
-                <h1>Daem cusine</h1>
+                <h1>Daem cuisine</h1>
             </Link>
             <Searbar />
             <Link to="/create">Create recipe</Link>
