@@ -17,7 +17,7 @@ const themeReducer = (state, action) => {
 // initial state
 const initialState = {
     color: "#58249c",
-    mode: "dark"
+    mode: "light"
 }
 
 export function ThemeProvider({ children }){
